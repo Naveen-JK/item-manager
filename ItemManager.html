@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Manager</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>📦 Item Manager</h1>
+
+        <div class="form-section">
+            <input type="text" id="itemId" placeholder="Item ID" />
+            <input type="text" id="itemName" placeholder="Item Name" />
+            <input type="number" id="itemAmount" placeholder="Amount" />
+            <button id="addItemBtn">➕ Add Item</button>
+        </div>
+
+        <input type="text" id="searchInput" placeholder="🔍 Search by name..." />
+
+        <div id="itemList" class="items-container">
+            <!-- Items will appear here -->
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
