@@ -18,22 +18,24 @@ addItemBtn.addEventListener("click", () => {
             amount
         };
 
+        // Immediately update UI
+        items.push(item);
+        renderItems(items);
+        clearInputs();
+
+        // Send to Google Apps Script
         fetch(scriptURL, {
-                method: 'POST',
-                body: JSON.stringify(item),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-            .then(res => res.json())
-            .then(response => {
-                if (response.status === 'success') {
-                    items.push(item);
-                    renderItems(items);
-                    clearInputs();
-                }
-            })
-            .catch(err => alert("Failed to add item"));
+            method: 'POST',
+            mode: 'no-cors', // can't read response
+            body: JSON.stringify(item),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).catch(err => {
+            console.error("Error sending item to Apps Script:", err);
+            alert("Item added locally, but failed to sync with server.");
+        });
+
     } else {
         alert("Please fill all fields.");
     }
@@ -86,4 +88,5 @@ window.addEventListener("DOMContentLoaded", () => {
         .catch(err => {
             console.error("Error loading items:", err);
         });
+
 });
